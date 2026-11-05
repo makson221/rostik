@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лікарня «Здоров'я»</title>
+  <style>
+    :root {
+      --bg: #f4f6fa;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: #ccfbf1;
+      --border: #e5e7eb;
+      --row-alt: #f9fafb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    header {
+      background: var(--accent);
+      color: #fff;
+      padding: 24px 16px;
+      text-align: center;
+    }
+
+    header h1 { margin: 0 0 4px; font-size: 1.8rem; }
+    header p  { margin: 0; opacity: 0.85; }
+
+    main {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+    }
+
+    /* ---------- Таби ---------- */
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .tab {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px 8px 0 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: -2px;
+      border-bottom: 2px solid transparent;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tab:hover { background: var(--accent-soft); color: var(--accent); }
+
+    .tab.active {
+      background: var(--surface);
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--surface);
+      border-radius: 0 0 8px 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .tab-panel.active { display: block; }
+
+    .tab-panel h2 { margin-top: 0; color: var(--accent); }
+    .tab-panel .hint { color: var(--muted); margin-top: -8px; }
+
+    /* ---------- Таблиці ---------- */
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--accent);
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) { background: var(--row-alt); }
+    tbody tr:hover { background: var(--accent-soft); }
+
+    td.num { text-align: right; white-space: nowrap; }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 16px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Лікарня «Здоров'я»</h1>
+  <p>Інформаційна система: лікарі, пацієнти, відділення</p>
+</header>
+
+<main>
+  <!-- Перемикачі табів -->
+  <div class="tabs" role="tablist">
+    <button class="tab active" role="tab" aria-selected="true"  aria-controls="doctors"     data-tab="doctors">Лікарі</button>
+    <button class="tab"        role="tab" aria-selected="false" aria-controls="patients"    data-tab="patients">Пацієнти</button>
+    <button class="tab"        role="tab" aria-selected="false" aria-controls="departments" data-tab="departments">Відділення</button>
+  </div>
+
+  <!-- ===================== Таблиця 1: Лікарі ===================== -->
+  <section id="doctors" class="tab-panel active" role="tabpanel">
+    <h2>Лікарі</h2>
+    <p class="hint">Медичний персонал лікарні</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>ПІБ</th>
+            <th>Спеціалізація</th>
+            <th>Відділення</th>
+            <th>Категорія</th>
+            <th>Стаж (років)</th>
+            <th>Кабінет</th>
+            <th>Телефон</th>
+            <th>Ставка (грн)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Коваленко Олег Петрович</td>
+            <td>Кардіолог</td>
+            <td>Кардіологічне</td>
+            <td>Вища</td>
+            <td class="num">18</td>
+            <td>204</td>
+            <td>+380 67 123 45 67</td>
+            <td class="num">32 000</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Шевченко Ірина Василівна</td>
+            <td>Невролог</td>
+            <td>Неврологічне</td>
+            <td>Перша</td>
+            <td class="num">11</td>
+            <td>310</td>
+            <td>+380 50 234 56 78</td>
+            <td class="num">27 500</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Бондаренко Андрій Миколайович</td>
+            <td>Хірург</td>
+            <td>Хірургічне</td>
+            <td>Вища</td>
+            <td class="num">22</td>
+            <td>115</td>
+            <td>+380 93 345 67 89</td>
+            <td class="num">35 000</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Ткаченко Марія Олегівна</td>
+            <td>Педіатр</td>
+            <td>Педіатричне</td>
+            <td>Друга</td>
+            <td class="num">5</td>
+            <td>021</td>
+            <td>+380 66 456 78 90</td>
+            <td class="num">22 000</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Мельник Сергій Іванович</td>
+            <td>Терапевт</td>
+            <td>Терапевтичне</td>
+            <td>Перша</td>
+            <td class="num">9</td>
+            <td>102</td>
+            <td>+380 97 567 89 01</td>
+            <td class="num">25 000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== Таблиця 2: Пацієнти ===================== -->
+  <section id="patients" class="tab-panel" role="tabpanel">
+    <h2>Пацієнти</h2>
+    <p class="hint">Пацієнти, що перебувають на лікуванні</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>№ картки</th>
+            <th>ПІБ</th>
+            <th>Дата народження</th>
+            <th>Стать</th>
+            <th>Адреса</th>
+            <th>Телефон</th>
+            <th>Діагноз</th>
+            <th>Лікуючий лікар</th>
+            <th>Дата госпіталізації</th>
+            <th>Палата</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P-1001</td>
+            <td>Литвиненко Петро Андрійович</td>
+            <td>12.03.1958</td>
+            <td>Ч</td>
+            <td>м. Київ, вул. Хрещатик, 10</td>
+            <td>+380 67 111 22 33</td>
+            <td>Гіпертонічна хвороба</td>
+            <td>Коваленко О. П.</td>
+            <td>28.10.2026</td>
+            <td>21</td>
+          </tr>
+          <tr>
+            <td>P-1002</td>
+            <td>Кравченко Олена Сергіївна</td>
+            <td>05.07.1985</td>
+            <td>Ж</td>
+            <td>м. Київ, вул. Січових Стрільців, 45</td>
+            <td>+380 50 222 33 44</td>
+            <td>Мігрень</td>
+            <td>Шевченко І. В.</td>
+            <td>01.11.2026</td>
+            <td>34</td>
+          </tr>
+          <tr>
+            <td>P-1003</td>
+            <td>Савченко Дмитро Олександрович</td>
+            <td>19.11.1990</td>
+            <td>Ч</td>
+            <td>м. Бровари, вул. Київська, 7</td>
+            <td>+380 93 333 44 55</td>
+            <td>Гострий апендицит</td>
+            <td>Бондаренко А. М.</td>
+            <td>03.11.2026</td>
+            <td>12</td>
+          </tr>
+          <tr>
+            <td>P-1004</td>
+            <td>Олійник Софія Максимівна</td>
+            <td>22.04.2019</td>
+            <td>Ж</td>
+            <td>м. Київ, просп. Перемоги, 88</td>
+            <td>+380 66 444 55 66</td>
+            <td>Бронхіт</td>
+            <td>Ткаченко М. О.</td>
+            <td>30.10.2026</td>
+            <td>5</td>
+          </tr>
+          <tr>
+            <td>P-1005</td>
+            <td>Поліщук Василь Григорович</td>
+            <td>08.09.1972</td>
+            <td>Ч</td>
+            <td>м. Ірпінь, вул. Соборна, 15</td>
+            <td>+380 97 555 66 77</td>
+            <td>Пневмонія</td>
+            <td>Мельник С. І.</td>
+            <td>02.11.2026</td>
+            <td>8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== Таблиця 3: Відділення ===================== -->
+  <section id="departments" class="tab-panel" role="tabpanel">
+    <h2>Відділення</h2>
+    <p class="hint">Структурні підрозділи лікарні</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Код</th>
+            <th>Назва</th>
+            <th>Завідувач</th>
+            <th>Поверх</th>
+            <th>Кількість ліжок</th>
+            <th>Вільних ліжок</th>
+            <th>Кількість лікарів</th>
+            <th>Години прийому</th>
+            <th>Внутрішній телефон</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>KRD</td>
+            <td>Кардіологічне</td>
+            <td>Коваленко О. П.</td>
+            <td class="num">2</td>
+            <td class="num">40</td>
+            <td class="num">6</td>
+            <td class="num">8</td>
+            <td>08:00 – 18:00</td>
+            <td>201</td>
+          </tr>
+          <tr>
+            <td>NRV</td>
+            <td>Неврологічне</td>
+            <td>Шевченко І. В.</td>
+            <td class="num">3</td>
+            <td class="num">35</td>
+            <td class="num">4</td>
+            <td class="num">6</td>
+            <td>08:00 – 17:00</td>
+            <td>301</td>
+          </tr>
+          <tr>
+            <td>HRG</td>
+            <td>Хірургічне</td>
+            <td>Бондаренко А. М.</td>
+            <td class="num">1</td>
+            <td class="num">50</td>
+            <td class="num">9</td>
+            <td class="num">12</td>
+            <td>цілодобово</td>
+            <td>101</td>
+          </tr>
+          <tr>
+            <td>PED</td>
+            <td>Педіатричне</td>
+            <td>Ткаченко М. О.</td>
+            <td class="num">0</td>
+            <td class="num">30</td>
+            <td class="num">7</td>
+            <td class="num">5</td>
+            <td>08:00 – 20:00</td>
+            <td>001</td>
+          </tr>
+          <tr>
+            <td>TRP</td>
+            <td>Терапевтичне</td>
+            <td>Мельник С. І.</td>
+            <td class="num">1</td>
+            <td class="num">45</td>
+            <td class="num">3</td>
+            <td class="num">10</td>
+            <td>08:00 – 19:00</td>
+            <td>102</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<footer>Завдання №1 — предметна область «Лікарня»</footer>
+
+<script>
+  // Перемикання табів: показуємо лише таблицю обраної сутності
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panels.forEach(function (p) { p.classList.remove('active'); });
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
